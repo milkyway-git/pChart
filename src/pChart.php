@@ -4468,7 +4468,7 @@ class pChart
 	 */
 	function printErrors($Mode = "CLI")
 	{
-		if (count($this->Errors) == 0)
+		if (!is_array($this->Errors))
 			return 0;
 
 		if ($Mode == "CLI") {
