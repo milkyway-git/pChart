@@ -56,8 +56,8 @@ class pData
 
 	function __construct()
 	{
-		$this->Data = "";
-		$this->DataDescription = "";
+		$this->Data = array();
+		$this->DataDescription = array();
 		$this->DataDescription["Position"] = "Name";
 		$this->DataDescription["Format"]["X"] = "number";
 		$this->DataDescription["Format"]["Y"] = "number";
@@ -74,7 +74,7 @@ class pData
 				$buffer = fgets($handle, 4096);
 				$buffer = str_replace(chr(10), "", $buffer);
 				$buffer = str_replace(chr(13), "", $buffer);
-				$Values = split($Delimiter, $buffer);
+				$Values = explode($Delimiter, $buffer);
 
 				if ($buffer != "") {
 					if ($HasHeader == TRUE && $HeaderParsed == FALSE) {
@@ -128,7 +128,7 @@ class pData
 			}
 		}
 
-		if (count($Value) == 1) {
+		if (!is_array($Value)) {
 			$this->Data[$ID][$Serie] = $Value;
 			if ($Description != "")
 				$this->Data[$ID]["Name"] = $Description;
