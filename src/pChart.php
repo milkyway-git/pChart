@@ -352,7 +352,7 @@ class pChart
 				$buffer = fgets($handle, 4096);
 				$buffer = str_replace(chr(10), "", $buffer);
 				$buffer = str_replace(chr(13), "", $buffer);
-				$Values = split($Delimiter, $buffer);
+				$Values = explode($Delimiter, $buffer);
 				if (count($Values) == 3) {
 					$this->Palette[$ColorID]["R"] = $Values[0];
 					$this->Palette[$ColorID]["G"] = $Values[1];
@@ -4542,7 +4542,7 @@ class pChart
 	{
 		/* Strip HTML query strings */
 		$Values = $this->tmpFolder . $MapName;
-		$Value = split("\?", $Values);
+		$Value = explode('?', $Values);
 		$FileName = $Value[0];
 
 		if (file_exists($FileName)) {
